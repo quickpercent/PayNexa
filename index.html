@@ -3,243 +3,517 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MyWallet</title>
+<meta name="theme-color" content="#0f172a">
+<title>PayNexa Wallet</title>
 
 <style>
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
-    font-family:Arial,sans-serif;
+    font-family:Inter,Arial,sans-serif;
 }
 
 body{
-    background:#f4f6f8;
-    color:#17202a;
+    background:#e8edf3;
+    color:#172033;
+}
+
+button,
+input{
+    font-family:inherit;
 }
 
 .app{
+    width:100%;
     max-width:430px;
-    margin:auto;
     min-height:100vh;
-    background:#f4f6f8;
-    padding-bottom:30px;
+    margin:auto;
+    background:#f7f9fc;
+    position:relative;
+    padding-bottom:92px;
+    overflow:hidden;
 }
 
+/* HEADER */
+
 .header{
-    background:#111827;
+    background:linear-gradient(145deg,#0f172a,#172554);
     color:white;
-    padding:22px 20px 28px;
-    border-radius:0 0 25px 25px;
+    padding:22px 20px 30px;
+    border-radius:0 0 30px 30px;
+    position:relative;
+    overflow:hidden;
+}
+
+.header:before{
+    content:"";
+    position:absolute;
+    width:190px;
+    height:190px;
+    border-radius:50%;
+    background:rgba(255,255,255,.05);
+    right:-70px;
+    top:-75px;
+}
+
+.header:after{
+    content:"";
+    position:absolute;
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:rgba(255,255,255,.04);
+    left:-65px;
+    bottom:-60px;
 }
 
 .top{
     display:flex;
     justify-content:space-between;
     align-items:center;
+    position:relative;
+    z-index:2;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.brand-icon{
+    width:38px;
+    height:38px;
+    border-radius:12px;
+    background:rgba(255,255,255,.12);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
 }
 
 .logo{
-    font-size:22px;
-    font-weight:bold;
+    font-size:21px;
+    font-weight:800;
+    letter-spacing:.2px;
 }
 
 .profile{
-    width:38px;
-    height:38px;
+    width:40px;
+    height:40px;
     border-radius:50%;
-    background:#374151;
+    background:#334155;
     display:flex;
     justify-content:center;
     align-items:center;
-    font-weight:bold;
+    font-weight:800;
+    border:2px solid rgba(255,255,255,.15);
 }
 
 .balance-box{
     margin-top:28px;
+    position:relative;
+    z-index:2;
 }
 
 .balance-label{
-    color:#cbd5e1;
-    font-size:13px;
+    color:#b9c5d8;
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:.4px;
+    text-transform:uppercase;
 }
 
-.balance{
-    font-size:34px;
-    font-weight:bold;
+.balance-row{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
     margin-top:5px;
 }
 
-.currency{
-    font-size:17px;
-    color:#cbd5e1;
+.balance{
+    font-size:36px;
+    font-weight:800;
+    letter-spacing:-1px;
 }
+
+.currency{
+    font-size:14px;
+    color:#cbd5e1;
+    font-weight:700;
+}
+
+/* QUICK ACTIONS */
 
 .actions{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:10px;
-    padding:18px;
+    gap:11px;
+    padding:18px 18px 10px;
 }
 
 .action{
     background:white;
-    border-radius:15px;
-    padding:15px 8px;
+    border-radius:18px;
+    padding:15px 7px 14px;
     text-align:center;
-    box-shadow:0 2px 8px rgba(0,0,0,.06);
+    box-shadow:0 5px 18px rgba(15,23,42,.07);
     cursor:pointer;
+    border:1px solid #edf1f5;
+    transition:.18s;
+}
+
+.action:active{
+    transform:scale(.96);
 }
 
 .action-icon{
-    font-size:25px;
-    margin-bottom:7px;
+    width:42px;
+    height:42px;
+    margin:0 auto 9px;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:19px;
+}
+
+.action:nth-child(1) .action-icon{
+    background:#eaf8ef;
+}
+
+.action:nth-child(2) .action-icon{
+    background:#fff1f1;
+}
+
+.action:nth-child(3) .action-icon{
+    background:#eef2ff;
 }
 
 .action span{
     font-size:12px;
-    font-weight:bold;
+    font-weight:800;
+    color:#273449;
 }
 
+/* SUMMARY */
+
+.summary{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:11px;
+    padding:8px 18px 4px;
+}
+
+.summary-card{
+    background:white;
+    border-radius:17px;
+    padding:14px;
+    border:1px solid #edf1f5;
+    box-shadow:0 4px 15px rgba(15,23,42,.05);
+}
+
+.summary-top{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    font-size:11px;
+    color:#64748b;
+    font-weight:700;
+}
+
+.summary-icon{
+    width:25px;
+    height:25px;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+}
+
+.income-bg{
+    background:#eaf8ef;
+}
+
+.expense-bg{
+    background:#fff1f1;
+}
+
+.summary-value{
+    margin-top:8px;
+    font-size:15px;
+    font-weight:800;
+}
+
+.income-text{
+    color:#159447;
+}
+
+.expense-text{
+    color:#dc3c3c;
+}
+
+/* TRANSACTIONS */
+
 .section{
-    padding:0 18px;
+    padding:8px 18px 0;
 }
 
 .section-title{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin:8px 0 12px;
+    margin:13px 0 12px;
 }
 
 .section-title h3{
     font-size:17px;
+    font-weight:800;
 }
 
 .clear{
-    font-size:12px;
+    font-size:11px;
     color:#dc2626;
+    font-weight:700;
     cursor:pointer;
+    padding:6px 4px;
 }
 
 .transaction{
     background:white;
-    padding:14px;
-    border-radius:14px;
+    padding:13px;
+    border-radius:17px;
     margin-bottom:9px;
     display:flex;
     justify-content:space-between;
     align-items:center;
+    border:1px solid #edf1f5;
+    box-shadow:0 4px 14px rgba(15,23,42,.045);
 }
 
 .tx-left{
     display:flex;
     align-items:center;
     gap:11px;
+    min-width:0;
 }
 
 .tx-icon{
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    background:#f1f5f9;
+    width:42px;
+    height:42px;
+    flex:none;
+    border-radius:14px;
     display:flex;
     align-items:center;
     justify-content:center;
+    font-size:17px;
+}
+
+.tx-icon.in{
+    background:#eaf8ef;
+}
+
+.tx-icon.out{
+    background:#fff1f1;
+}
+
+.tx-info{
+    min-width:0;
 }
 
 .tx-name{
-    font-weight:bold;
-    font-size:14px;
+    font-weight:800;
+    font-size:13px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:180px;
 }
 
 .tx-date{
-    font-size:11px;
+    font-size:10px;
     color:#94a3b8;
-    margin-top:3px;
+    margin-top:4px;
 }
 
 .amount{
-    font-weight:bold;
-    font-size:14px;
+    font-weight:800;
+    font-size:13px;
+    white-space:nowrap;
+    margin-left:8px;
 }
 
 .income{
-    color:#16a34a;
+    color:#159447;
 }
 
 .expense{
-    color:#dc2626;
+    color:#dc3c3c;
 }
 
 .empty{
     background:white;
-    border-radius:14px;
-    padding:25px;
+    border-radius:18px;
+    padding:32px 20px;
     text-align:center;
     color:#94a3b8;
     font-size:13px;
+    border:1px solid #edf1f5;
 }
 
-/* Modal */
+.empty-icon{
+    font-size:30px;
+    margin-bottom:9px;
+    opacity:.7;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:430px;
+    height:76px;
+    background:rgba(255,255,255,.96);
+    backdrop-filter:blur(12px);
+    border-top:1px solid #e8edf3;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:5;
+}
+
+.nav-item{
+    text-align:center;
+    color:#94a3b8;
+    font-size:10px;
+    font-weight:700;
+    min-width:70px;
+}
+
+.nav-item.active{
+    color:#172554;
+}
+
+.nav-icon{
+    font-size:20px;
+    margin-bottom:4px;
+}
+
+.nav-center{
+    width:49px;
+    height:49px;
+    border-radius:17px;
+    background:#172554;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+    margin:-25px auto 3px;
+    box-shadow:0 7px 18px rgba(23,37,84,.25);
+}
+
+/* MODAL */
 
 .modal-bg{
     display:none;
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.55);
-    z-index:10;
+    background:rgba(15,23,42,.58);
+    z-index:20;
     align-items:flex-end;
     justify-content:center;
+    backdrop-filter:blur(3px);
 }
 
 .modal{
     width:100%;
     max-width:430px;
-    background:white;
-    border-radius:25px 25px 0 0;
-    padding:22px;
+    background:#fff;
+    border-radius:27px 27px 0 0;
+    padding:20px 20px 25px;
+    box-shadow:0 -10px 35px rgba(0,0,0,.16);
+    animation:slideUp .2s ease;
+}
+
+@keyframes slideUp{
+    from{
+        transform:translateY(35px);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
+}
+
+.modal-handle{
+    width:42px;
+    height:4px;
+    background:#dbe1e8;
+    border-radius:10px;
+    margin:0 auto 19px;
 }
 
 .modal h2{
     font-size:20px;
     margin-bottom:18px;
+    font-weight:800;
 }
 
 .input{
     width:100%;
     padding:14px;
-    border:1px solid #d1d5db;
-    border-radius:12px;
-    font-size:16px;
+    border:1px solid #dbe1e8;
+    border-radius:13px;
+    font-size:15px;
     outline:none;
-    margin-bottom:12px;
+    margin-bottom:11px;
+    background:#f8fafc;
+}
+
+.input:focus{
+    border-color:#64748b;
+    background:white;
 }
 
 .btn{
     width:100%;
     border:none;
     padding:14px;
-    border-radius:12px;
-    font-size:15px;
-    font-weight:bold;
+    border-radius:13px;
+    font-size:14px;
+    font-weight:800;
     cursor:pointer;
-    background:#111827;
+    background:#172554;
     color:white;
 }
 
+.btn:active{
+    transform:scale(.98);
+}
+
 .cancel{
-    background:#e5e7eb;
-    color:#111827;
+    background:#eef1f5;
+    color:#172033;
     margin-top:8px;
 }
+
+/* PIN */
 
 .pin-screen{
     position:fixed;
     inset:0;
-    background:#111827;
+    background:linear-gradient(145deg,#0f172a,#172554);
     color:white;
-    z-index:20;
+    z-index:50;
     display:none;
     align-items:center;
     justify-content:center;
@@ -252,13 +526,27 @@ body{
     text-align:center;
 }
 
+.pin-logo{
+    width:65px;
+    height:65px;
+    border-radius:21px;
+    background:rgba(255,255,255,.1);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:30px;
+    margin:0 auto 17px;
+}
+
 .pin-box h1{
-    margin-bottom:10px;
+    margin-bottom:8px;
+    font-size:25px;
 }
 
 .pin-box p{
     color:#9ca3af;
     margin-bottom:25px;
+    font-size:13px;
 }
 
 .pin-input{
@@ -268,14 +556,33 @@ body{
     font-size:25px;
     letter-spacing:10px;
     border:none;
-    border-radius:12px;
+    border-radius:13px;
     margin-bottom:15px;
+    outline:none;
 }
 
 .error{
     color:#f87171;
     font-size:13px;
     margin-top:10px;
+}
+
+/* SMALL SCREEN */
+
+@media(max-width:360px){
+
+    .balance{
+        font-size:31px;
+    }
+
+    .tx-name{
+        max-width:135px;
+    }
+
+    .action{
+        padding-left:4px;
+        padding-right:4px;
+    }
 }
 </style>
 </head>
@@ -284,61 +591,210 @@ body{
 
 <div class="app">
 
+    <!-- HEADER -->
+
     <div class="header">
+
         <div class="top">
-            <div class="logo">MyWallet</div>
+
+            <div class="brand">
+
+                <div class="brand-icon">₿</div>
+
+                <div class="logo">PayNexa</div>
+
+            </div>
+
             <div class="profile">H</div>
+
         </div>
 
         <div class="balance-box">
-            <div class="balance-label">Available Balance</div>
-            <div class="balance">
-                <span id="balance">0</span>
-                <span class="currency">PKR</span>
+
+            <div class="balance-label">
+                Available Balance
             </div>
+
+            <div class="balance-row">
+
+                <div class="balance">
+                    <span id="balance">0</span>
+                </div>
+
+                <div class="currency">
+                    PKR
+                </div>
+
+            </div>
+
         </div>
+
     </div>
+
+
+    <!-- QUICK ACTIONS -->
 
     <div class="actions">
 
         <div class="action" onclick="openModal('add')">
-            <div class="action-icon">➕</div>
+
+            <div class="action-icon">＋</div>
+
             <span>Add Money</span>
+
         </div>
 
         <div class="action" onclick="openModal('withdraw')">
-            <div class="action-icon">➖</div>
+
+            <div class="action-icon">−</div>
+
             <span>Withdraw</span>
+
         </div>
 
         <div class="action" onclick="openModal('send')">
-            <div class="action-icon">↗️</div>
+
+            <div class="action-icon">↗</div>
+
             <span>Send</span>
+
         </div>
 
     </div>
 
+
+    <!-- SUMMARY -->
+
+    <div class="summary">
+
+        <div class="summary-card">
+
+            <div class="summary-top">
+
+                <div class="summary-icon income-bg">↙</div>
+
+                Income
+
+            </div>
+
+            <div
+                class="summary-value income-text"
+                id="incomeTotal"
+            >
+                PKR 0
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-top">
+
+                <div class="summary-icon expense-bg">↗</div>
+
+                Expenses
+
+            </div>
+
+            <div
+                class="summary-value expense-text"
+                id="expenseTotal"
+            >
+                PKR 0
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- TRANSACTIONS -->
+
     <div class="section">
 
         <div class="section-title">
+
             <h3>Recent Transactions</h3>
-            <div class="clear" onclick="clearTransactions()">Clear</div>
+
+            <div
+                class="clear"
+                onclick="clearTransactions()"
+            >
+                Clear
+            </div>
+
         </div>
 
         <div id="transactions"></div>
 
     </div>
 
+
+    <!-- BOTTOM NAV -->
+
+    <div class="bottom-nav">
+
+        <div class="nav-item active">
+
+            <div class="nav-icon">⌂</div>
+
+            Home
+
+        </div>
+
+
+        <div class="nav-item">
+
+            <div class="nav-icon">↕</div>
+
+            Activity
+
+        </div>
+
+
+        <div class="nav-item">
+
+            <div class="nav-center">＋</div>
+
+            Add
+
+        </div>
+
+
+        <div class="nav-item">
+
+            <div class="nav-icon">▣</div>
+
+            Wallet
+
+        </div>
+
+
+        <div class="nav-item">
+
+            <div class="nav-icon">⚙</div>
+
+            Settings
+
+        </div>
+
+    </div>
+
 </div>
 
 
-<!-- Modal -->
+<!-- MODAL -->
 
 <div class="modal-bg" id="modalBg">
 
     <div class="modal">
 
-        <h2 id="modalTitle">Add Money</h2>
+        <div class="modal-handle"></div>
+
+        <h2 id="modalTitle">
+            Add Money
+        </h2>
 
         <input
             id="amountInput"
@@ -355,11 +811,17 @@ body{
             placeholder="Description / Name"
         >
 
-        <button class="btn" onclick="submitTransaction()">
+        <button
+            class="btn"
+            onclick="submitTransaction()"
+        >
             Confirm
         </button>
 
-        <button class="btn cancel" onclick="closeModal()">
+        <button
+            class="btn cancel"
+            onclick="closeModal()"
+        >
             Cancel
         </button>
 
@@ -368,15 +830,21 @@ body{
 </div>
 
 
-<!-- PIN Screen -->
+<!-- PIN SCREEN -->
 
 <div class="pin-screen" id="pinScreen">
 
     <div class="pin-box">
 
-        <h1>🔐 MyWallet</h1>
+        <div class="pin-logo">
+            ₿
+        </div>
 
-        <p>Enter your PIN to continue</p>
+        <h1>PayNexa</h1>
+
+        <p>
+            Enter your PIN to continue
+        </p>
 
         <input
             id="pinInput"
@@ -387,11 +855,17 @@ body{
             placeholder="••••"
         >
 
-        <button class="btn" onclick="checkPin()">
+        <button
+            class="btn"
+            onclick="checkPin()"
+        >
             Unlock
         </button>
 
-        <div class="error" id="pinError"></div>
+        <div
+            class="error"
+            id="pinError"
+        ></div>
 
     </div>
 
@@ -400,15 +874,18 @@ body{
 
 <script>
 
-let balance = Number(localStorage.getItem("walletBalance")) || 0;
+let balance =
+    Number(localStorage.getItem("walletBalance")) || 0;
 
 let transactions =
-    JSON.parse(localStorage.getItem("walletTransactions")) || [];
+    JSON.parse(
+        localStorage.getItem("walletTransactions")
+    ) || [];
 
 let currentAction = "";
 
 
-/* Balance */
+/* BALANCE */
 
 function updateBalance(){
 
@@ -419,10 +896,38 @@ function updateBalance(){
         "walletBalance",
         balance
     );
+
+    updateSummary();
 }
 
 
-/* Transactions */
+/* SUMMARY */
+
+function updateSummary(){
+
+    let income = 0;
+    let expenses = 0;
+
+    transactions.forEach(tx => {
+
+        if(tx.type === "add"){
+            income += Number(tx.amount);
+        }else{
+            expenses += Number(tx.amount);
+        }
+
+    });
+
+    document.getElementById("incomeTotal").textContent =
+        "PKR " + income.toLocaleString();
+
+    document.getElementById("expenseTotal").textContent =
+        "PKR " + expenses.toLocaleString();
+
+}
+
+
+/* SAVE */
 
 function saveTransactions(){
 
@@ -434,7 +939,7 @@ function saveTransactions(){
 }
 
 
-/* Display Transactions */
+/* DISPLAY */
 
 function renderTransactions(){
 
@@ -445,120 +950,167 @@ function renderTransactions(){
 
     if(transactions.length === 0){
 
-        container.innerHTML =
-            '<div class="empty">No transactions yet</div>';
+        container.innerHTML = `
 
-        return;
-    }
+            <div class="empty">
 
-    transactions.slice().reverse().forEach(tx => {
+                <div class="empty-icon">▱</div>
 
-        const div =
-            document.createElement("div");
-
-        div.className = "transaction";
-
-        div.innerHTML = `
-
-            <div class="tx-left">
-
-                <div class="tx-icon">
-                    ${tx.type === "add" ? "➕" : "➖"}
-                </div>
-
-                <div>
-
-                    <div class="tx-name">
-                        ${escapeHTML(tx.name)}
-                    </div>
-
-                    <div class="tx-date">
-                        ${tx.date}
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="amount ${tx.type === "add" ? "income" : "expense"}">
-
-                ${tx.type === "add" ? "+" : "-"}
-                PKR ${Number(tx.amount).toLocaleString()}
+                No transactions yet
 
             </div>
 
         `;
 
-        container.appendChild(div);
+        updateSummary();
 
-    });
+        return;
+    }
+
+
+    transactions
+        .slice()
+        .reverse()
+        .forEach(tx => {
+
+            const div =
+                document.createElement("div");
+
+            div.className = "transaction";
+
+
+            const isIncome =
+                tx.type === "add";
+
+
+            div.innerHTML = `
+
+                <div class="tx-left">
+
+                    <div
+                        class="tx-icon ${
+                            isIncome ? "in" : "out"
+                        }"
+                    >
+                        ${isIncome ? "↙" : "↗"}
+                    </div>
+
+                    <div class="tx-info">
+
+                        <div class="tx-name">
+                            ${escapeHTML(tx.name)}
+                        </div>
+
+                        <div class="tx-date">
+                            ${tx.date}
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div
+                    class="amount ${
+                        isIncome
+                        ? "income"
+                        : "expense"
+                    }"
+                >
+                    ${isIncome ? "+" : "-"}
+                    PKR ${Number(tx.amount).toLocaleString()}
+                </div>
+
+            `;
+
+
+            container.appendChild(div);
+
+        });
+
+
+    updateSummary();
 
 }
 
 
-/* Open Modal */
+/* OPEN MODAL */
 
 function openModal(action){
 
     currentAction = action;
 
-    document.getElementById("modalBg").style.display =
-        "flex";
+    document.getElementById("modalBg")
+        .style.display = "flex";
 
-    document.getElementById("amountInput").value = "";
+    document.getElementById("amountInput")
+        .value = "";
 
-    document.getElementById("nameInput").value = "";
+    document.getElementById("nameInput")
+        .value = "";
+
 
     if(action === "add"){
 
-        document.getElementById("modalTitle").textContent =
-            "Add Money";
+        document.getElementById("modalTitle")
+            .textContent = "Add Money";
 
     }
+
 
     if(action === "withdraw"){
 
-        document.getElementById("modalTitle").textContent =
-            "Withdraw Money";
+        document.getElementById("modalTitle")
+            .textContent = "Withdraw Money";
 
     }
+
 
     if(action === "send"){
 
-        document.getElementById("modalTitle").textContent =
-            "Send Money";
+        document.getElementById("modalTitle")
+            .textContent = "Send Money";
 
     }
 
 }
 
 
-/* Close Modal */
+/* CLOSE */
 
 function closeModal(){
 
-    document.getElementById("modalBg").style.display =
-        "none";
+    document.getElementById("modalBg")
+        .style.display = "none";
 
 }
 
 
-/* Submit */
+/* SUBMIT */
 
 function submitTransaction(){
 
     const amount =
-        Number(document.getElementById("amountInput").value);
+        Number(
+            document.getElementById("amountInput").value
+        );
+
 
     let name =
-        document.getElementById("nameInput").value.trim();
+        document
+            .getElementById("nameInput")
+            .value
+            .trim();
+
 
     if(!amount || amount <= 0){
 
-        alert("Please enter a valid amount.");
+        alert(
+            "Please enter a valid amount."
+        );
 
         return;
     }
+
 
     if(!name){
 
@@ -572,7 +1124,7 @@ function submitTransaction(){
     }
 
 
-    /* Add */
+    /* ADD */
 
     if(currentAction === "add"){
 
@@ -587,18 +1139,22 @@ function submitTransaction(){
     }
 
 
-    /* Withdraw / Send */
+    /* WITHDRAW / SEND */
 
     else{
 
         if(amount > balance){
 
-            alert("Insufficient balance.");
+            alert(
+                "Insufficient balance."
+            );
 
             return;
         }
 
+
         balance -= amount;
+
 
         addTransaction(
             "expense",
@@ -620,7 +1176,7 @@ function submitTransaction(){
 }
 
 
-/* Add Transaction */
+/* ADD TRANSACTION */
 
 function addTransaction(
     type,
@@ -643,7 +1199,7 @@ function addTransaction(
 }
 
 
-/* Clear */
+/* CLEAR */
 
 function clearTransactions(){
 
@@ -652,7 +1208,12 @@ function clearTransactions(){
         return;
     }
 
-    if(confirm("Clear all transactions?")){
+
+    if(
+        confirm(
+            "Clear all transactions?"
+        )
+    ){
 
         transactions = [];
 
@@ -665,7 +1226,7 @@ function clearTransactions(){
 }
 
 
-/* Security */
+/* SECURITY */
 
 function escapeHTML(text){
 
@@ -679,7 +1240,7 @@ function escapeHTML(text){
 }
 
 
-/* Start */
+/* START */
 
 updateBalance();
 
