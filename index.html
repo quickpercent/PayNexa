@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0f172a">
-<title>PayNexa Wallet</title>
+<title>PayNexa</title>
 
 <style>
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
-    font-family:Inter,Arial,sans-serif;
+    font-family:Arial,sans-serif;
 }
 
 body{
@@ -19,10 +19,133 @@ body{
     color:#172033;
 }
 
-button,
-input{
+button,input{
     font-family:inherit;
 }
+
+button{
+    cursor:pointer;
+}
+
+.hidden{
+    display:none !important;
+}
+
+/* AUTH */
+
+.auth-screen{
+    min-height:100vh;
+    background:linear-gradient(145deg,#0f172a,#172554);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:22px;
+}
+
+.auth-box{
+    width:100%;
+    max-width:400px;
+}
+
+.auth-logo{
+    text-align:center;
+    color:white;
+    margin-bottom:28px;
+}
+
+.auth-logo-icon{
+    width:65px;
+    height:65px;
+    margin:0 auto 13px;
+    border-radius:21px;
+    background:rgba(255,255,255,.11);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+.auth-logo h1{
+    font-size:27px;
+    margin-bottom:6px;
+}
+
+.auth-logo p{
+    color:#aeb9cb;
+    font-size:13px;
+}
+
+.auth-card{
+    background:white;
+    border-radius:25px;
+    padding:24px 20px;
+    box-shadow:0 20px 50px rgba(0,0,0,.20);
+}
+
+.auth-card h2{
+    font-size:22px;
+    margin-bottom:7px;
+}
+
+.auth-subtitle{
+    color:#64748b;
+    font-size:12px;
+    margin-bottom:20px;
+}
+
+.auth-input{
+    width:100%;
+    padding:14px;
+    margin-bottom:11px;
+    border:1px solid #dbe1e8;
+    border-radius:13px;
+    outline:none;
+    font-size:14px;
+    background:#f8fafc;
+}
+
+.auth-input:focus{
+    border-color:#172554;
+    background:white;
+}
+
+.auth-btn{
+    width:100%;
+    border:0;
+    padding:14px;
+    border-radius:13px;
+    background:#172554;
+    color:white;
+    font-size:14px;
+    font-weight:800;
+    margin-top:4px;
+}
+
+.auth-switch{
+    text-align:center;
+    margin-top:17px;
+    color:#64748b;
+    font-size:12px;
+}
+
+.auth-switch span{
+    color:#172554;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.auth-error{
+    color:#dc2626;
+    background:#fff1f1;
+    padding:10px;
+    border-radius:10px;
+    font-size:11px;
+    margin-bottom:11px;
+    display:none;
+}
+
+/* APP */
 
 .app{
     width:100%;
@@ -34,8 +157,6 @@ input{
     padding-bottom:92px;
     overflow:hidden;
 }
-
-/* HEADER */
 
 .header{
     background:linear-gradient(145deg,#0f172a,#172554);
@@ -91,13 +212,11 @@ input{
     align-items:center;
     justify-content:center;
     font-size:20px;
-    box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);
 }
 
 .logo{
     font-size:21px;
     font-weight:800;
-    letter-spacing:.2px;
 }
 
 .profile{
@@ -109,7 +228,6 @@ input{
     justify-content:center;
     align-items:center;
     font-weight:800;
-    border:2px solid rgba(255,255,255,.15);
 }
 
 .balance-box{
@@ -122,7 +240,6 @@ input{
     color:#b9c5d8;
     font-size:12px;
     font-weight:600;
-    letter-spacing:.4px;
     text-transform:uppercase;
 }
 
@@ -136,7 +253,6 @@ input{
 .balance{
     font-size:36px;
     font-weight:800;
-    letter-spacing:-1px;
 }
 
 .currency{
@@ -145,7 +261,7 @@ input{
     font-weight:700;
 }
 
-/* QUICK ACTIONS */
+/* ACTIONS */
 
 .actions{
     display:grid;
@@ -160,7 +276,6 @@ input{
     padding:15px 7px 14px;
     text-align:center;
     box-shadow:0 5px 18px rgba(15,23,42,.07);
-    cursor:pointer;
     border:1px solid #edf1f5;
     transition:.18s;
 }
@@ -177,7 +292,7 @@ input{
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:19px;
+    font-size:20px;
 }
 
 .action:nth-child(1) .action-icon{
@@ -195,7 +310,6 @@ input{
 .action span{
     font-size:12px;
     font-weight:800;
-    color:#273449;
 }
 
 /* SUMMARY */
@@ -231,7 +345,6 @@ input{
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:12px;
 }
 
 .income-bg{
@@ -271,7 +384,6 @@ input{
 
 .section-title h3{
     font-size:17px;
-    font-weight:800;
 }
 
 .clear{
@@ -279,7 +391,6 @@ input{
     color:#dc2626;
     font-weight:700;
     cursor:pointer;
-    padding:6px 4px;
 }
 
 .transaction{
@@ -367,7 +478,6 @@ input{
 .empty-icon{
     font-size:30px;
     margin-bottom:9px;
-    opacity:.7;
 }
 
 /* BOTTOM NAV */
@@ -380,7 +490,7 @@ input{
     width:100%;
     max-width:430px;
     height:76px;
-    background:rgba(255,255,255,.96);
+    background:rgba(255,255,255,.97);
     backdrop-filter:blur(12px);
     border-top:1px solid #e8edf3;
     display:flex;
@@ -394,7 +504,7 @@ input{
     color:#94a3b8;
     font-size:10px;
     font-weight:700;
-    min-width:70px;
+    min-width:65px;
 }
 
 .nav-item.active{
@@ -417,7 +527,6 @@ input{
     justify-content:center;
     font-size:23px;
     margin:-25px auto 3px;
-    box-shadow:0 7px 18px rgba(23,37,84,.25);
 }
 
 /* MODAL */
@@ -439,19 +548,6 @@ input{
     background:#fff;
     border-radius:27px 27px 0 0;
     padding:20px 20px 25px;
-    box-shadow:0 -10px 35px rgba(0,0,0,.16);
-    animation:slideUp .2s ease;
-}
-
-@keyframes slideUp{
-    from{
-        transform:translateY(35px);
-        opacity:0;
-    }
-    to{
-        transform:translateY(0);
-        opacity:1;
-    }
 }
 
 .modal-handle{
@@ -465,7 +561,6 @@ input{
 .modal h2{
     font-size:20px;
     margin-bottom:18px;
-    font-weight:800;
 }
 
 .input{
@@ -479,11 +574,6 @@ input{
     background:#f8fafc;
 }
 
-.input:focus{
-    border-color:#64748b;
-    background:white;
-}
-
 .btn{
     width:100%;
     border:none;
@@ -491,13 +581,8 @@ input{
     border-radius:13px;
     font-size:14px;
     font-weight:800;
-    cursor:pointer;
     background:#172554;
     color:white;
-}
-
-.btn:active{
-    transform:scale(.98);
 }
 
 .cancel{
@@ -506,71 +591,43 @@ input{
     margin-top:8px;
 }
 
-/* PIN */
+/* PROFILE MENU */
 
-.pin-screen{
+.profile-menu{
     position:fixed;
-    inset:0;
-    background:linear-gradient(145deg,#0f172a,#172554);
-    color:white;
-    z-index:50;
+    top:68px;
+    right:calc(50% - 195px);
+    width:190px;
+    background:white;
+    border-radius:16px;
+    padding:8px;
+    box-shadow:0 12px 35px rgba(0,0,0,.18);
+    z-index:15;
     display:none;
-    align-items:center;
-    justify-content:center;
-    padding:25px;
 }
 
-.pin-box{
-    width:100%;
-    max-width:350px;
-    text-align:center;
-}
-
-.pin-logo{
-    width:65px;
-    height:65px;
-    border-radius:21px;
-    background:rgba(255,255,255,.1);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:30px;
-    margin:0 auto 17px;
-}
-
-.pin-box h1{
-    margin-bottom:8px;
-    font-size:25px;
-}
-
-.pin-box p{
-    color:#9ca3af;
-    margin-bottom:25px;
+.profile-name{
+    padding:11px;
+    font-weight:800;
     font-size:13px;
+    border-bottom:1px solid #edf1f5;
+    margin-bottom:5px;
 }
 
-.pin-input{
+.logout{
     width:100%;
-    padding:16px;
-    text-align:center;
-    font-size:25px;
-    letter-spacing:10px;
-    border:none;
-    border-radius:13px;
-    margin-bottom:15px;
-    outline:none;
+    border:0;
+    background:#fff1f1;
+    color:#dc2626;
+    padding:11px;
+    border-radius:10px;
+    font-weight:800;
+    font-size:12px;
 }
 
-.error{
-    color:#f87171;
-    font-size:13px;
-    margin-top:10px;
-}
-
-/* SMALL SCREEN */
+/* MOBILE */
 
 @media(max-width:360px){
-
     .balance{
         font-size:31px;
     }
@@ -578,20 +635,134 @@ input{
     .tx-name{
         max-width:135px;
     }
-
-    .action{
-        padding-left:4px;
-        padding-right:4px;
-    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="app">
+<!-- AUTH SCREEN -->
 
-    <!-- HEADER -->
+<div id="authScreen" class="auth-screen">
+
+    <div class="auth-box">
+
+        <div class="auth-logo">
+
+            <div class="auth-logo-icon">
+                ₿
+            </div>
+
+            <h1>PayNexa</h1>
+
+            <p>Your simple personal wallet</p>
+
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <div id="loginCard" class="auth-card">
+
+            <h2>Welcome back</h2>
+
+            <div class="auth-subtitle">
+                Login to access your wallet
+            </div>
+
+            <div id="loginError" class="auth-error"></div>
+
+            <input
+                id="loginEmail"
+                class="auth-input"
+                type="email"
+                placeholder="Email address"
+            >
+
+            <input
+                id="loginPassword"
+                class="auth-input"
+                type="password"
+                placeholder="Password"
+            >
+
+            <button
+                class="auth-btn"
+                onclick="login()"
+            >
+                Login
+            </button>
+
+            <div class="auth-switch">
+                Don't have an account?
+                <span onclick="showSignup()">Sign Up</span>
+            </div>
+
+        </div>
+
+
+        <!-- SIGN UP -->
+
+        <div id="signupCard" class="auth-card hidden">
+
+            <h2>Create account</h2>
+
+            <div class="auth-subtitle">
+                Create your PayNexa wallet account
+            </div>
+
+            <div id="signupError" class="auth-error"></div>
+
+            <input
+                id="signupName"
+                class="auth-input"
+                type="text"
+                placeholder="Full name"
+            >
+
+            <input
+                id="signupEmail"
+                class="auth-input"
+                type="email"
+                placeholder="Email address"
+            >
+
+            <input
+                id="signupPassword"
+                class="auth-input"
+                type="password"
+                placeholder="Password"
+            >
+
+            <input
+                id="signupConfirm"
+                class="auth-input"
+                type="password"
+                placeholder="Confirm password"
+            >
+
+            <button
+                class="auth-btn"
+                onclick="signup()"
+            >
+                Create Account
+            </button>
+
+            <div class="auth-switch">
+                Already have an account?
+                <span onclick="showLogin()">Login</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- WALLET APP -->
+
+<div id="walletApp" class="app hidden">
 
     <div class="header">
 
@@ -599,15 +770,26 @@ input{
 
             <div class="brand">
 
-                <div class="brand-icon">₿</div>
+                <div class="brand-icon">
+                    ₿
+                </div>
 
-                <div class="logo">PayNexa</div>
+                <div class="logo">
+                    PayNexa
+                </div>
 
             </div>
 
-            <div class="profile">H</div>
+            <div
+                id="profile"
+                class="profile"
+                onclick="toggleProfileMenu()"
+            >
+                H
+            </div>
 
         </div>
+
 
         <div class="balance-box">
 
@@ -632,32 +814,32 @@ input{
     </div>
 
 
-    <!-- QUICK ACTIONS -->
+    <!-- ACTIONS -->
 
     <div class="actions">
 
-        <div class="action" onclick="openModal('add')">
-
+        <div
+            class="action"
+            onclick="openModal('add')"
+        >
             <div class="action-icon">＋</div>
-
             <span>Add Money</span>
-
         </div>
 
-        <div class="action" onclick="openModal('withdraw')">
-
+        <div
+            class="action"
+            onclick="openModal('withdraw')"
+        >
             <div class="action-icon">−</div>
-
             <span>Withdraw</span>
-
         </div>
 
-        <div class="action" onclick="openModal('send')">
-
+        <div
+            class="action"
+            onclick="openModal('send')"
+        >
             <div class="action-icon">↗</div>
-
             <span>Send</span>
-
         </div>
 
     </div>
@@ -671,7 +853,9 @@ input{
 
             <div class="summary-top">
 
-                <div class="summary-icon income-bg">↙</div>
+                <div class="summary-icon income-bg">
+                    ↙
+                </div>
 
                 Income
 
@@ -691,7 +875,9 @@ input{
 
             <div class="summary-top">
 
-                <div class="summary-icon expense-bg">↗</div>
+                <div class="summary-icon expense-bg">
+                    ↗
+                </div>
 
                 Expenses
 
@@ -731,52 +917,33 @@ input{
     </div>
 
 
-    <!-- BOTTOM NAV -->
+    <!-- NAV -->
 
     <div class="bottom-nav">
 
         <div class="nav-item active">
-
             <div class="nav-icon">⌂</div>
-
             Home
-
         </div>
 
-
         <div class="nav-item">
-
             <div class="nav-icon">↕</div>
-
             Activity
-
         </div>
 
-
         <div class="nav-item">
-
             <div class="nav-center">＋</div>
-
             Add
-
         </div>
 
-
         <div class="nav-item">
-
             <div class="nav-icon">▣</div>
-
             Wallet
-
         </div>
 
-
         <div class="nav-item">
-
             <div class="nav-icon">⚙</div>
-
             Settings
-
         </div>
 
     </div>
@@ -784,9 +951,33 @@ input{
 </div>
 
 
-<!-- MODAL -->
+<!-- PROFILE MENU -->
 
-<div class="modal-bg" id="modalBg">
+<div id="profileMenu" class="profile-menu">
+
+    <div
+        id="profileName"
+        class="profile-name"
+    >
+        User
+    </div>
+
+    <button
+        class="logout"
+        onclick="logout()"
+    >
+        Logout
+    </button>
+
+</div>
+
+
+<!-- TRANSACTION MODAL -->
+
+<div
+    class="modal-bg"
+    id="modalBg"
+>
 
     <div class="modal">
 
@@ -830,57 +1021,366 @@ input{
 </div>
 
 
-<!-- PIN SCREEN -->
-
-<div class="pin-screen" id="pinScreen">
-
-    <div class="pin-box">
-
-        <div class="pin-logo">
-            ₿
-        </div>
-
-        <h1>PayNexa</h1>
-
-        <p>
-            Enter your PIN to continue
-        </p>
-
-        <input
-            id="pinInput"
-            class="pin-input"
-            type="password"
-            inputmode="numeric"
-            maxlength="4"
-            placeholder="••••"
-        >
-
-        <button
-            class="btn"
-            onclick="checkPin()"
-        >
-            Unlock
-        </button>
-
-        <div
-            class="error"
-            id="pinError"
-        ></div>
-
-    </div>
-
-</div>
-
-
 <script>
 
+/* =========================
+   AUTHENTICATION
+========================= */
+
+let currentUser =
+    localStorage.getItem("paynexaCurrentUser");
+
+let users =
+    JSON.parse(
+        localStorage.getItem("paynexaUsers")
+    ) || [];
+
+
+/* SHOW LOGIN */
+
+function showLogin(){
+
+    document
+        .getElementById("loginCard")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("signupCard")
+        .classList.add("hidden");
+
+    clearAuthErrors();
+}
+
+
+/* SHOW SIGNUP */
+
+function showSignup(){
+
+    document
+        .getElementById("loginCard")
+        .classList.add("hidden");
+
+    document
+        .getElementById("signupCard")
+        .classList.remove("hidden");
+
+    clearAuthErrors();
+}
+
+
+/* ERROR */
+
+function showError(id,message){
+
+    const box =
+        document.getElementById(id);
+
+    box.textContent = message;
+
+    box.style.display = "block";
+}
+
+
+function clearAuthErrors(){
+
+    document
+        .getElementById("loginError")
+        .style.display = "none";
+
+    document
+        .getElementById("signupError")
+        .style.display = "none";
+
+}
+
+
+/* SIGN UP */
+
+function signup(){
+
+    const name =
+        document
+            .getElementById("signupName")
+            .value
+            .trim();
+
+    const email =
+        document
+            .getElementById("signupEmail")
+            .value
+            .trim()
+            .toLowerCase();
+
+    const password =
+        document
+            .getElementById("signupPassword")
+            .value;
+
+    const confirm =
+        document
+            .getElementById("signupConfirm")
+            .value;
+
+
+    if(!name || !email || !password || !confirm){
+
+        showError(
+            "signupError",
+            "Please fill in all fields."
+        );
+
+        return;
+    }
+
+
+    if(!email.includes("@")){
+
+        showError(
+            "signupError",
+            "Please enter a valid email."
+        );
+
+        return;
+    }
+
+
+    if(password.length < 6){
+
+        showError(
+            "signupError",
+            "Password must be at least 6 characters."
+        );
+
+        return;
+    }
+
+
+    if(password !== confirm){
+
+        showError(
+            "signupError",
+            "Passwords do not match."
+        );
+
+        return;
+    }
+
+
+    if(
+        users.some(
+            user => user.email === email
+        )
+    ){
+
+        showError(
+            "signupError",
+            "An account with this email already exists."
+        );
+
+        return;
+    }
+
+
+    const newUser = {
+
+        id:Date.now(),
+
+        name:name,
+
+        email:email,
+
+        password:password
+
+    };
+
+
+    users.push(newUser);
+
+
+    localStorage.setItem(
+        "paynexaUsers",
+        JSON.stringify(users)
+    );
+
+
+    localStorage.setItem(
+        "paynexaCurrentUser",
+        email
+    );
+
+
+    currentUser = email;
+
+
+    enterWallet();
+
+}
+
+
+/* LOGIN */
+
+function login(){
+
+    const email =
+        document
+            .getElementById("loginEmail")
+            .value
+            .trim()
+            .toLowerCase();
+
+    const password =
+        document
+            .getElementById("loginPassword")
+            .value;
+
+
+    const user =
+        users.find(
+            item =>
+                item.email === email &&
+                item.password === password
+        );
+
+
+    if(!user){
+
+        showError(
+            "loginError",
+            "Incorrect email or password."
+        );
+
+        return;
+    }
+
+
+    localStorage.setItem(
+        "paynexaCurrentUser",
+        email
+    );
+
+
+    currentUser = email;
+
+
+    enterWallet();
+
+}
+
+
+/* ENTER WALLET */
+
+function enterWallet(){
+
+    document
+        .getElementById("authScreen")
+        .classList.add("hidden");
+
+    document
+        .getElementById("walletApp")
+        .classList.remove("hidden");
+
+    updateUserUI();
+
+    updateBalance();
+
+    renderTransactions();
+
+}
+
+
+/* USER UI */
+
+function updateUserUI(){
+
+    const user =
+        users.find(
+            item =>
+                item.email === currentUser
+        );
+
+
+    if(!user){
+        return;
+    }
+
+
+    const firstLetter =
+        user.name
+            .charAt(0)
+            .toUpperCase();
+
+
+    document
+        .getElementById("profile")
+        .textContent = firstLetter;
+
+
+    document
+        .getElementById("profileName")
+        .textContent = user.name;
+
+}
+
+
+/* LOGOUT */
+
+function logout(){
+
+    localStorage.removeItem(
+        "paynexaCurrentUser"
+    );
+
+    currentUser = null;
+
+    document
+        .getElementById("walletApp")
+        .classList.add("hidden");
+
+    document
+        .getElementById("authScreen")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("profileMenu")
+        .style.display = "none";
+
+    showLogin();
+
+}
+
+
+/* PROFILE MENU */
+
+function toggleProfileMenu(){
+
+    const menu =
+        document.getElementById("profileMenu");
+
+    menu.style.display =
+        menu.style.display === "block"
+        ? "none"
+        : "block";
+
+}
+
+
+/* =========================
+   WALLET
+========================= */
+
 let balance =
-    Number(localStorage.getItem("walletBalance")) || 0;
+    Number(
+        localStorage.getItem("walletBalance")
+    ) || 0;
+
 
 let transactions =
     JSON.parse(
-        localStorage.getItem("walletTransactions")
+        localStorage.getItem(
+            "walletTransactions"
+        )
     ) || [];
+
 
 let currentAction = "";
 
@@ -889,7 +1389,9 @@ let currentAction = "";
 
 function updateBalance(){
 
-    document.getElementById("balance").textContent =
+    document
+        .getElementById("balance")
+        .textContent =
         balance.toLocaleString();
 
     localStorage.setItem(
@@ -898,6 +1400,7 @@ function updateBalance(){
     );
 
     updateSummary();
+
 }
 
 
@@ -906,22 +1409,34 @@ function updateBalance(){
 function updateSummary(){
 
     let income = 0;
+
     let expenses = 0;
+
 
     transactions.forEach(tx => {
 
         if(tx.type === "add"){
+
             income += Number(tx.amount);
+
         }else{
+
             expenses += Number(tx.amount);
+
         }
 
     });
 
-    document.getElementById("incomeTotal").textContent =
+
+    document
+        .getElementById("incomeTotal")
+        .textContent =
         "PKR " + income.toLocaleString();
 
-    document.getElementById("expenseTotal").textContent =
+
+    document
+        .getElementById("expenseTotal")
+        .textContent =
         "PKR " + expenses.toLocaleString();
 
 }
@@ -944,9 +1459,13 @@ function saveTransactions(){
 function renderTransactions(){
 
     const container =
-        document.getElementById("transactions");
+        document.getElementById(
+            "transactions"
+        );
+
 
     container.innerHTML = "";
+
 
     if(transactions.length === 0){
 
@@ -954,7 +1473,9 @@ function renderTransactions(){
 
             <div class="empty">
 
-                <div class="empty-icon">▱</div>
+                <div class="empty-icon">
+                    ▱
+                </div>
 
                 No transactions yet
 
@@ -976,7 +1497,9 @@ function renderTransactions(){
             const div =
                 document.createElement("div");
 
-            div.className = "transaction";
+
+            div.className =
+                "transaction";
 
 
             const isIncome =
@@ -989,7 +1512,9 @@ function renderTransactions(){
 
                     <div
                         class="tx-icon ${
-                            isIncome ? "in" : "out"
+                            isIncome
+                            ? "in"
+                            : "out"
                         }"
                     >
                         ${isIncome ? "↙" : "↗"}
@@ -1039,47 +1564,60 @@ function openModal(action){
 
     currentAction = action;
 
-    document.getElementById("modalBg")
+
+    document
+        .getElementById("modalBg")
         .style.display = "flex";
 
-    document.getElementById("amountInput")
+
+    document
+        .getElementById("amountInput")
         .value = "";
 
-    document.getElementById("nameInput")
+
+    document
+        .getElementById("nameInput")
         .value = "";
 
 
     if(action === "add"){
 
-        document.getElementById("modalTitle")
-            .textContent = "Add Money";
+        document
+            .getElementById("modalTitle")
+            .textContent =
+            "Add Money";
 
     }
 
 
     if(action === "withdraw"){
 
-        document.getElementById("modalTitle")
-            .textContent = "Withdraw Money";
+        document
+            .getElementById("modalTitle")
+            .textContent =
+            "Withdraw Money";
 
     }
 
 
     if(action === "send"){
 
-        document.getElementById("modalTitle")
-            .textContent = "Send Money";
+        document
+            .getElementById("modalTitle")
+            .textContent =
+            "Send Money";
 
     }
 
 }
 
 
-/* CLOSE */
+/* CLOSE MODAL */
 
 function closeModal(){
 
-    document.getElementById("modalBg")
+    document
+        .getElementById("modalBg")
         .style.display = "none";
 
 }
@@ -1091,7 +1629,9 @@ function submitTransaction(){
 
     const amount =
         Number(
-            document.getElementById("amountInput").value
+            document
+                .getElementById("amountInput")
+                .value
         );
 
 
@@ -1124,11 +1664,10 @@ function submitTransaction(){
     }
 
 
-    /* ADD */
-
     if(currentAction === "add"){
 
         balance += amount;
+
 
         addTransaction(
             "add",
@@ -1138,8 +1677,6 @@ function submitTransaction(){
 
     }
 
-
-    /* WITHDRAW / SEND */
 
     else{
 
@@ -1242,9 +1779,28 @@ function escapeHTML(text){
 
 /* START */
 
-updateBalance();
+if(currentUser){
 
-renderTransactions();
+    const exists =
+        users.some(
+            user =>
+                user.email === currentUser
+        );
+
+
+    if(exists){
+
+        enterWallet();
+
+    }else{
+
+        localStorage.removeItem(
+            "paynexaCurrentUser"
+        );
+
+    }
+
+}
 
 </script>
 
